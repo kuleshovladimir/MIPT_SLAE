@@ -5,16 +5,18 @@
 
 class DenseMatrix {
 public:
-    DenseMatrix(int rows, int columns);
-    double& operator()(int row, int column);
-    double operator()(int row, int column) const;
-    int getRows() const;
-    int getColumns() const;
+    DenseMatrix(int size);
+    int getSize() const;
+    double getMaxEigenvalue() const;
+    double getMinEigenvalue() const;
+    double& operator()(int row, int col);
+    const double& operator()(int row, int col) const;
+    std::vector<double>& getRow(int row);
+    const std::vector<double>& getRow(int row) const;
+    std::vector<double> operator*(const std::vector<double>& vec) const;
 
 private:
-    int rows_;
-    int columns_;
-    std::vector<double> data_;
+    std::vector<std::vector<double>> matrix_;
 };
 
 #endif

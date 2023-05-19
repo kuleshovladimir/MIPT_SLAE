@@ -2,34 +2,24 @@
 
 TridiagonalMatrix::TridiagonalMatrix(int size)
         : size_(size),
-          mainDiagonal_(size),
-          upperDiagonal_(size - 1),
-          lowerDiagonal_(size - 1) {}
+          diagonals_(3 * size - 2) {}  // The total number of elements required to store the three diagonals
 
 double& TridiagonalMatrix::operator()(int row, int column) {
-    if (row == column) {
-        return mainDiagonal_[row];
-    } else if (row == column - 1) {
-        return lowerDiagonal_[row];
-    } else if (row == column + 1) {
-        return upperDiagonal_[row];
-    } else {
-        throw std::out_of_range("Invalid row/column indices for TridiagonalMatrix.");
-    }
+    int index = getIndex(row, column);
+    return diagonals_[index];
 }
 
 double TridiagonalMatrix::operator()(int row, int column) const {
-    if (row == column) {
-        return mainDiagonal_[row];
-    } else if (row == column - 1) {
-        return lowerDiagonal_[row];
-    } else if (row == column + 1) {
-        return upperDiagonal_[row];
-    } else {
-        return 0.0; // Default value for non-existing entries
-    }
+    int index = getIndex(row, column);
+    return diagonals_[index];
 }
 
 int TridiagonalMatrix::getSize() const {
     return size_;
+}
+
+int TridiagonalMatrix::getIndex(int row, int column) const {
+    int offset = row - column;
+    int index = column + offset;
+    return index;
 }

@@ -5,13 +5,14 @@
 
 class SSORMethod {
 public:
-    SSORMethod(const DenseMatrix& matrix, const std::vector<double>& b, double omega);
+    SSORMethod(const DenseMatrix& matrix, const std::vector<double>& b, double omega, int maxIterations);
     std::vector<double> solve();
 
 private:
     DenseMatrix matrix_;
     std::vector<double> b_;
     double omega_;
+    int maxIterations_;
 };
 
 #endif

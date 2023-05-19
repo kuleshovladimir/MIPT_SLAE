@@ -5,12 +5,13 @@
 
 class ConjugateGradientMethod {
 public:
-    ConjugateGradientMethod(const DenseMatrix& matrix, const std::vector<double>& b);
+    ConjugateGradientMethod(const DenseMatrix& matrix, const std::vector<double>& b, int maxIterations);
     std::vector<double> solve();
 
 private:
     DenseMatrix matrix_;
     std::vector<double> b_;
+    int maxIterations_;
 };
 
 #endif

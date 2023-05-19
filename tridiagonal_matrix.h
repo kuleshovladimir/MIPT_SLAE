@@ -12,9 +12,10 @@ public:
 
 private:
     int size_;
-    std::vector<double> mainDiagonal_;
-    std::vector<double> upperDiagonal_;
-    std::vector<double> lowerDiagonal_;
+    std::vector<double> diagonals_;  // Store the main diagonal, upper diagonal, and lower diagonal
+
+    // Helper function to get the index in the diagonals_ vector for a given row and column
+    int getIndex(int row, int column) const;
 };
 
 #endif
